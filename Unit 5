@@ -1,0 +1,225 @@
+1. Implement Exception Handling
+#include <iostream>
+using namespace std;
+
+int main() {
+    int a, b;
+
+    cout << "Enter numerator: ";
+    cin >> a;
+
+    cout << "Enter denominator: ";
+    cin >> b;
+
+    try {
+        if (b == 0) {
+            throw b;
+        }
+
+        cout << "Result = " << (float)a / b << endl;
+    }
+    catch (int) {
+        cout << "Error: Division by zero is not allowed." << endl;
+    }
+
+    return 0;
+}
+
+2. Multiple Catch Statements
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    int choice;
+
+    cout << "Enter 1 for integer exception" << endl;
+    cout << "Enter 2 for character exception" << endl;
+    cout << "Enter your choice: ";
+    cin >> choice;
+
+    try {
+
+        if (choice == 1) {
+            throw 100;
+        }
+        else if (choice == 2) {
+            throw 'A';
+        }
+        else {
+            throw 10.5;
+        }
+
+    }
+
+    catch (int x) {
+        cout << "Integer exception caught: " << x << endl;
+    }
+
+    catch (char x) {
+        cout << "Character exception caught: " << x << endl;
+    }
+
+    catch (double x) {
+        cout << "Double exception caught: " << x << endl;
+    }
+
+    return 0;
+}
+
+3. Implement List, Vector and Their Operations
+#include <iostream>
+#include <vector>
+#include <list>
+using namespace std;
+
+int main() {
+
+    // ---------------- VECTOR ----------------
+
+    vector<int> v;
+
+    v.push_back(10);
+    v.push_back(20);
+    v.push_back(30);
+
+    cout << "Vector elements:" << endl;
+
+    for (int x : v) {
+        cout << x << " ";
+    }
+
+    cout << endl;
+
+    v.pop_back();
+
+    cout << "After pop_back:" << endl;
+
+    for (int x : v) {
+        cout << x << " ";
+    }
+
+    cout << endl;
+
+    // ---------------- LIST ----------------
+
+    list<int> l;
+
+    l.push_back(10);
+    l.push_back(20);
+    l.push_front(5);
+
+    cout << "\nList elements:" << endl;
+
+    for (int x : l) {
+        cout << x << " ";
+    }
+
+    cout << endl;
+
+    l.pop_front();
+
+    cout << "After pop_front:" << endl;
+
+    for (int x : l) {
+        cout << x << " ";
+    }
+
+    cout << endl;
+
+    return 0;
+}
+
+4. Implement Deque and Its Operations
+#include <iostream>
+#include <deque>
+using namespace std;
+
+int main() {
+
+    deque<int> dq;
+
+    // Insert elements
+    dq.push_back(20);
+    dq.push_back(30);
+    dq.push_front(10);
+    dq.push_front(5);
+
+    cout << "Deque elements:" << endl;
+
+    for (int x : dq) {
+        cout << x << " ";
+    }
+
+    cout << endl;
+
+    // Remove from front
+    dq.pop_front();
+
+    cout << "After pop_front:" << endl;
+
+    for (int x : dq) {
+        cout << x << " ";
+    }
+
+    cout << endl;
+
+    // Remove from back
+    dq.pop_back();
+
+    cout << "After pop_back:" << endl;
+
+    for (int x : dq) {
+        cout << x << " ";
+    }
+
+    cout << endl;
+
+    return 0;
+}
+
+5. Implement Map and Its Operations
+#include <iostream>
+#include <map>
+using namespace std;
+
+int main() {
+
+    map<int, string> students;
+
+    // Insert elements
+    students[101] = "Nandini";
+    students[102] = "Rahul";
+    students[103] = "Priya";
+
+    cout << "Student records:" << endl;
+
+    for (auto x : students) {
+        cout << "Roll No: " << x.first
+             << ", Name: " << x.second << endl;
+    }
+
+    // Access an element
+    cout << "\nStudent with Roll No 102: "
+         << students[102] << endl;
+
+    // Insert using insert()
+    students.insert({104, "Arjun"});
+
+    cout << "\nAfter inserting Roll No 104:" << endl;
+
+    for (auto x : students) {
+        cout << x.first << " - " << x.second << endl;
+    }
+
+    // Delete an element
+    students.erase(103);
+
+    cout << "\nAfter deleting Roll No 103:" << endl;
+
+    for (auto x : students) {
+        cout << x.first << " - " << x.second << endl;
+    }
+
+    return 0;
+}
