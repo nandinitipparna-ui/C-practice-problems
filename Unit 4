@@ -1,0 +1,101 @@
+//1. Illustrate the use of Function Template
+#include <iostream>
+using namespace std;
+
+template <class T>
+T maximum(T a, T b) {
+    return (a > b) ? a : b;
+}
+
+int main() {
+
+    cout << "Maximum of integers = "
+         << maximum(10, 20) << endl;
+
+    cout << "Maximum of decimals = "
+         << maximum(5.5, 2.3) << endl;
+
+    cout << "Maximum of characters = "
+         << maximum('A', 'Z') << endl;
+
+    return 0;
+}
+2. Implement Template Class
+#include <iostream>
+using namespace std;
+
+template <class T>
+class Calculator {
+private:
+    T a, b;
+
+public:
+    Calculator(T x, T y) {
+        a = x;
+        b = y;
+    }
+
+    T add() {
+        return a + b;
+    }
+
+    T multiply() {
+        return a * b;
+    }
+
+    void display() {
+        cout << "Addition = " << add() << endl;
+        cout << "Multiplication = " << multiply() << endl;
+    }
+};
+
+int main() {
+
+    Calculator<int> c1(10, 20);
+
+    cout << "Integer values:" << endl;
+    c1.display();
+
+    Calculator<float> c2(2.5, 4.0);
+
+    cout << "\nFloat values:" << endl;
+    c2.display();
+
+    return 0;
+}
+3. Class Template with Multiple Parameters
+#include <iostream>
+using namespace std;
+
+template <class T1, class T2>
+class Data {
+private:
+    T1 value1;
+    T2 value2;
+
+public:
+    Data(T1 v1, T2 v2) {
+        value1 = v1;
+        value2 = v2;
+    }
+
+    void display() {
+        cout << "Value 1 = " << value1 << endl;
+        cout << "Value 2 = " << value2 << endl;
+    }
+};
+
+int main() {
+
+    Data<int, float> d1(10, 20.5);
+
+    cout << "Integer and Float:" << endl;
+    d1.display();
+
+    Data<string, int> d2("Nandini", 101);
+
+    cout << "\nString and Integer:" << endl;
+    d2.display();
+
+    return 0;
+}
