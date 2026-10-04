@@ -1,0 +1,127 @@
+// UNIT 1 
+// 1st program  1. Find the roots of a quadratic equation
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+    double a, b, c;
+    double discriminant, root1, root2;
+
+    cout << "Enter a, b and c: ";
+    cin >> a >> b >> c;
+
+    discriminant = b * b - 4 * a * c;
+
+    if (discriminant > 0) {
+        root1 = (-b + sqrt(discriminant)) / (2 * a);
+        root2 = (-b - sqrt(discriminant)) / (2 * a);
+
+        cout << "Root 1 = " << root1 << endl;
+        cout << "Root 2 = " << root2 << endl;
+    }
+    else if (discriminant == 0) {
+        root1 = -b / (2 * a);
+
+        cout << "Both roots are equal." << endl;
+        cout << "Root = " << root1 << endl;
+    }
+    else {
+        cout << "Roots are complex." << endl;
+    }
+
+    return 0;
+}
+
+//2nd program  2. Find factorial of a given number using recursion
+#include <iostream>
+using namespace std;
+
+long long factorial(int n) {
+    if (n == 0 || n == 1)
+        return 1;
+
+    return n * factorial(n - 1);
+}
+
+int main() {
+    int n;
+
+    cout << "Enter a number: ";
+    cin >> n;
+
+    if (n < 0) {
+        cout << "Factorial is not defined for negative numbers.";
+    }
+    else {
+        cout << "Factorial of " << n << " = " << factorial(n);
+    }
+
+    return 0;
+}
+
+// 3rd program   3. Implement scope resolution and namespaces
+#include <iostream>
+using namespace std;
+
+namespace First {
+    int value = 10;
+
+    void display() {
+        cout << "First namespace value = " << value << endl;
+    }
+}
+
+namespace Second {
+    int value = 20;
+
+    void display() {
+        cout << "Second namespace value = " << value << endl;
+    }
+}
+
+int value = 30;
+
+int main() {
+    cout << "Global value = " << ::value << endl;
+
+    cout << "First namespace value = " << First::value << endl;
+    First::display();
+
+    cout << "Second namespace value = " << Second::value << endl;
+    Second::display();
+
+    return 0;
+}
+
+4th program 4. Illustrate default arguments and access specifiers
+#include <iostream>
+using namespace std;
+
+class Student {
+private:
+    int marks;
+
+public:
+    Student(int m = 50) {
+        marks = m;
+    }
+
+    void display() {
+        cout << "Marks = " << marks << endl;
+    }
+};
+
+int main() {
+    Student s1;
+    Student s2(85);
+
+    cout << "Student 1:" << endl;
+    s1.display();
+
+    cout << "Student 2:" << endl;
+    s2.display();
+
+    return 0;
+}
+
