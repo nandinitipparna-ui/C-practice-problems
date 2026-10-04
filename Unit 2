@@ -1,0 +1,177 @@
+// UNIT 2
+//1. Inline functions and function overloading
+#include <iostream>
+using namespace std;
+
+// Inline function
+inline int square(int n) {
+    return n * n;
+}
+
+// Function overloading
+int add(int a, int b) {
+    return a + b;
+}
+
+int add(int a, int b, int c) {
+    return a + b + c;
+}
+
+double add(double a, double b) {
+    return a + b;
+}
+
+int main() {
+    cout << "Square of 5 = " << square(5) << endl;
+
+    cout << "Sum of two numbers = " << add(10, 20) << endl;
+
+    cout << "Sum of three numbers = " << add(10, 20, 30) << endl;
+
+    cout << "Sum of two decimal numbers = " << add(5.5, 2.5) << endl;
+
+    return 0;
+}
+
+//2nd program 2. Program to illustrate friend function
+#include <iostream>
+using namespace std;
+
+class Student {
+private:
+    int marks;
+
+public:
+    Student(int m) {
+        marks = m;
+    }
+
+    friend void displayMarks(Student s);
+};
+
+void displayMarks(Student s) {
+    cout << "Marks = " << s.marks << endl;
+}
+
+int main() {
+    Student s(85);
+
+    displayMarks(s);
+
+    return 0;
+}
+
+// 3rd program 3. Constructors and Destructors
+#include <iostream>
+using namespace std;
+
+class Student {
+public:
+    Student() {
+        cout << "Constructor called." << endl;
+    }
+
+    ~Student() {
+        cout << "Destructor called." << endl;
+    }
+};
+
+int main() {
+    Student s;
+
+    cout << "Inside main function." << endl;
+
+    return 0;
+}
+
+4th program 4. Constructor overloading
+#include <iostream>
+using namespace std;
+
+class Student {
+private:
+    int rollNo;
+    string name;
+
+public:
+    // Default constructor
+    Student() {
+        rollNo = 0;
+        name = "Unknown";
+    }
+
+    // One parameter
+    Student(int r) {
+        rollNo = r;
+        name = "Unknown";
+    }
+
+    // Two parameters
+    Student(int r, string n) {
+        rollNo = r;
+        name = n;
+    }
+
+    void display() {
+        cout << "Roll Number: " << rollNo << endl;
+        cout << "Name: " << name << endl;
+        cout << endl;
+    }
+};
+
+int main() {
+    Student s1;
+    Student s2(101);
+    Student s3(102, "Nandini");
+
+    s1.display();
+    s2.display();
+    s3.display();
+
+    return 0;
+}
+
+// 5th program 5. Copy Constructor
+#include <iostream>
+using namespace std;
+
+class Student {
+private:
+    int rollNo;
+    string name;
+
+public:
+    Student(int r, string n) {
+        rollNo = r;
+        name = n;
+    }
+
+    // Copy constructor
+    Student(const Student &s) {
+        rollNo = s.rollNo;
+        name = s.name;
+    }
+
+    void display() {
+        cout << "Roll Number: " << rollNo << endl;
+        cout << "Name: " << name << endl;
+    }
+};
+
+int main() {
+    Student s1(101, "Nandini");
+
+    // Copying s1 into s2
+    Student s2 = s1;
+
+    cout << "Original object:" << endl;
+    s1.display();
+
+    cout << "\nCopied object:" << endl;
+    s2.display();
+
+    return 0;
+}
+
+
+
