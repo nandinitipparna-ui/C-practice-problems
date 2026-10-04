@@ -1,0 +1,491 @@
+// 1st program
+1. Unary and Binary Operator Overloading using Member Function
+#include <iostream>
+using namespace std;
+
+class Number {
+private:
+    int value;
+
+public:
+    Number(int v) {
+        value = v;
+    }
+
+    // Unary operator overloading
+    void operator-() {
+        value = -value;
+    }
+
+    // Binary operator overloading
+    Number operator+(Number n) {
+        Number temp(0);
+        temp.value = value + n.value;
+        return temp;
+    }
+
+    void display() {
+        cout << "Value = " << value << endl;
+    }
+};
+
+int main() {
+    Number n1(10);
+    Number n2(20);
+
+    cout << "Before unary operator:" << endl;
+    n1.display();
+
+    -n1;
+
+    cout << "After unary operator:" << endl;
+    n1.display();
+
+    Number n3 = n1 + n2;
+
+    cout << "After binary operator (+):" << endl;
+    n3.display();
+
+    return 0;
+}
+
+2. Unary and Binary Operator Overloading using Friend Function
+#include <iostream>
+using namespace std;
+
+class Number {
+private:
+    int value;
+
+public:
+    Number(int v) {
+        value = v;
+    }
+
+    // Unary operator as friend function
+    friend void operator-(Number &n);
+
+    // Binary operator as friend function
+    friend Number operator+(Number n1, Number n2);
+
+    void display() {
+        cout << "Value = " << value << endl;
+    }
+};
+
+// Unary operator
+void operator-(Number &n) {
+    n.value = -n.value;
+}
+
+// Binary operator
+Number operator+(Number n1, Number n2) {
+    Number temp(0);
+    temp.value = n1.value + n2.value;
+    return temp;
+}
+
+int main() {
+    Number n1(10);
+    Number n2(20);
+
+    cout << "Before unary operator:" << endl;
+    n1.display();
+
+    -n1;
+
+    cout << "After unary operator:" << endl;
+    n1.display();
+
+    Number n3 = n1 + n2;
+
+    cout << "After binary operator (+):" << endl;
+    n3.display();
+
+    return 0;
+}
+3. Different Forms of Inheritance
+#include <iostream>
+using namespace std;
+
+// ---------------- Single Inheritance ----------------
+
+class Animal {
+public:
+    void eat() {
+        cout << "Animal eats." << endl;
+    }
+};
+
+class Dog : public Animal {
+public:
+    void bark() {
+        cout << "Dog barks." << endl;
+    }
+};
+
+// ---------------- Multiple Inheritance ----------------
+
+class Father {
+public:
+    void fatherProperty() {
+        cout << "Father's property." << endl;
+    }
+};
+
+class Mother {
+public:
+    void motherProperty() {
+        cout << "Mother's property." << endl;
+    }
+};
+
+class Child : public Father, public Mother {
+public:
+    void childActivity() {
+        cout << "Child activity." << endl;
+    }
+};
+
+// ---------------- Multilevel Inheritance ----------------
+
+class Grandparent {
+public:
+    void grandparent() {
+        cout << "Grandparent class." << endl;
+    }
+};
+
+class Parent : public Grandparent {
+public:
+    void parent() {
+        cout << "Parent class." << endl;
+    }
+};
+
+class Son : public Parent {
+public:
+    void son() {
+        cout << "Son class." << endl;
+    }
+};
+
+// ---------------- Hierarchical Inheritance ----------------
+
+class Vehicle {
+public:
+    void start() {
+        cout << "Vehicle starts." << endl;
+    }
+};
+
+class Car : public Vehicle {
+public:
+    void driveCar() {
+        cout << "Car is driving." << endl;
+    }
+};
+
+class Bike : public Vehicle {
+public:
+    void rideBike() {
+        cout << "Bike is riding." << endl;
+    }
+};
+
+// ---------------- Hybrid Inheritance ----------------
+
+class A {
+public:
+    void showA() {
+        cout << "Class A." << endl;
+    }
+};
+
+class B : public A {
+public:
+    void showB() {
+        cout << "Class B." << endl;
+    }
+};
+
+class C : public A {
+public:
+    void showC() {
+        cout << "Class C." << endl;
+    }
+};
+
+class D : public B, public C {
+public:
+    void showD() {
+        cout << "Class D." << endl;
+    }
+};
+
+int main() {
+
+    cout << "----- Single Inheritance -----" << endl;
+    Dog d;
+    d.eat();
+    d.bark();
+
+    cout << "\n----- Multiple Inheritance -----" << endl;
+    Child c;
+    c.fatherProperty();
+    c.motherProperty();
+    c.childActivity();
+
+    cout << "\n----- Multilevel Inheritance -----" << endl;
+    Son s;
+    s.grandparent();
+    s.parent();
+    s.son();
+
+    cout << "\n----- Hierarchical Inheritance -----" << endl;
+    Car car;
+    car.start();
+    car.driveCar();
+
+    Bike bike;
+    bike.start();
+    bike.rideBike();
+
+    cout << "\n----- Hybrid Inheritance -----" << endl;
+    D obj;
+    obj.showD();
+
+    return 0;
+}
+
+4. Order of Execution of Constructors and Destructors in Inheritance
+#include <iostream>
+using namespace std;
+
+class A {
+public:
+    A() {
+        cout << "Constructor of A" << endl;
+    }
+
+    ~A() {
+        cout << "Destructor of A" << endl;
+    }
+};
+
+class B : public A {
+public:
+    B() {
+        cout << "Constructor of B" << endl;
+    }
+
+    ~B() {
+        cout << "Destructor of B" << endl;
+    }
+};
+
+class C : public B {
+public:
+    C() {
+        cout << "Constructor of C" << endl;
+    }
+
+    ~C() {
+        cout << "Destructor of C" << endl;
+    }
+};
+
+int main() {
+    C obj;
+
+    return 0;
+}
+5. Object as Class Member, Pointer to Class, this Pointer and Virtual Base Class
+#include <iostream>
+using namespace std;
+
+// Object as class member
+class Address {
+public:
+    string city;
+
+    Address(string c) {
+        city = c;
+    }
+};
+
+class Student {
+private:
+    int rollNo;
+
+public:
+    Address address;   // Object as class member
+
+    Student(int r, string city) : address(city) {
+        rollNo = r;
+    }
+
+    void display() {
+        cout << "Roll Number: " << rollNo << endl;
+        cout << "City: " << address.city << endl;
+    }
+
+    void changeRollNo(int rollNo) {
+        this->rollNo = rollNo;   // this pointer
+    }
+};
+
+// Virtual base class
+class A {
+public:
+    void showA() {
+        cout << "Class A" << endl;
+    }
+};
+
+class B : virtual public A {
+};
+
+class C : virtual public A {
+};
+
+class D : public B, public C {
+};
+
+int main() {
+
+    // Object as class member
+    Student s(101, "Hyderabad");
+
+    cout << "Student details:" << endl;
+    s.display();
+
+    // this pointer
+    s.changeRollNo(102);
+
+    cout << "\nAfter changing roll number:" << endl;
+    s.display();
+
+    // Pointer to class
+    Student *ptr = &s;
+
+    cout << "\nUsing pointer to class:" << endl;
+    ptr->display();
+
+    // Virtual base class
+    D obj;
+
+    cout << "\nUsing virtual base class:" << endl;
+    obj.showA();
+
+    return 0;
+}
+6. Illustrate Virtual Functions
+#include <iostream>
+using namespace std;
+
+class Animal {
+public:
+    virtual void sound() {
+        cout << "Animal makes a sound." << endl;
+    }
+};
+
+class Dog : public Animal {
+public:
+    void sound() override {
+        cout << "Dog barks." << endl;
+    }
+};
+
+class Cat : public Animal {
+public:
+    void sound() override {
+        cout << "Cat meows." << endl;
+    }
+};
+
+int main() {
+
+    Animal *ptr;
+
+    Dog d;
+    Cat c;
+
+    ptr = &d;
+    ptr->sound();
+
+    ptr = &c;
+    ptr->sound();
+
+    return 0;
+}
+7. Pure Virtual Function and Abstract Class
+#include <iostream>
+using namespace std;
+
+class Shape {
+public:
+    // Pure virtual function
+    virtual void area() = 0;
+};
+
+class Circle : public Shape {
+private:
+    float radius;
+
+public:
+    Circle(float r) {
+        radius = r;
+    }
+
+    void area() override {
+        cout << "Area of Circle = "
+             << 3.14 * radius * radius << endl;
+    }
+};
+
+class Rectangle : public Shape {
+private:
+    float length, width;
+
+public:
+    Rectangle(float l, float w) {
+        length = l;
+        width = w;
+    }
+
+    void area() override {
+        cout << "Area of Rectangle = "
+             << length * width << endl;
+    }
+};
+
+class Triangle : public Shape {
+private:
+    float base, height;
+
+public:
+    Triangle(float b, float h) {
+        base = b;
+        height = h;
+    }
+
+    void area() override {
+        cout << "Area of Triangle = "
+             << 0.5 * base * height << endl;
+    }
+};
+
+int main() {
+
+    Circle c(5);
+    Rectangle r(10, 5);
+    Triangle t(8, 6);
+
+    c.area();
+    r.area();
+    t.area();
+
+    return 0;
+}
